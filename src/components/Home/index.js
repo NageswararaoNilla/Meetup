@@ -1,15 +1,17 @@
-import RegisterContext from '../../context/RegisterContext'
+import {Link} from 'react-router-dom'
+
 import Header from '../Header'
+
+import RegisterContext from '../../context/RegisterContext'
 
 import {
   HomeContainer,
-  Greetings,
-  Message,
-  LinkEl,
-  RegisterButton,
-  GreetingsTopic,
+  HomeHeading,
+  HomePara,
+  Button,
+  Image,
   Name,
-  MeetupImage,
+  Topic,
 } from './styledComponents'
 
 const topicsList = [
@@ -36,7 +38,7 @@ const topicsList = [
 ]
 
 const Home = props => {
-  const onClickRegister = () => {
+  const onRegister = () => {
     const {history} = props
     history.replace('/register')
   }
@@ -45,43 +47,39 @@ const Home = props => {
     <RegisterContext.Consumer>
       {value => {
         const {registerStatus, name, topic} = value
-
+        // console.log(isRegistered)
         const topicName =
           topicsList[topicsList.findIndex(eachTopic => eachTopic.id === topic)]
             .displayText
-        // console.log(topicName)
-        //  console.log(userName, name)
 
         return (
-          <>
+          <div>
             <Header />
-            <HomeContainer>
-              {registerStatus ? (
-                <>
-                  <Name>{`Hello ${name}`}</Name>
-                  <GreetingsTopic>Welcome to {topicName}</GreetingsTopic>
-                  <MeetupImage
-                    src="https://assets.ccbp.in/frontend/react-js/meetup/meetup-img.png"
-                    alt="meetup"
-                  />
-                </>
-              ) : (
-                <>
-                  <Greetings>Welcome to Meetup</Greetings>
-                  <Message>Please register for the topic</Message>
-                  <LinkEl to="/register">
-                    <RegisterButton type="button" onClick={onClickRegister}>
-                      Register
-                    </RegisterButton>
-                  </LinkEl>
-                  <MeetupImage
-                    src="https://assets.ccbp.in/frontend/react-js/meetup/meetup-img.png"
-                    alt="meetup"
-                  />
-                </>
-              )}
-            </HomeContainer>
-          </>
+
+            {registerStatus === true ? (
+              <HomeContainer>
+                <Name>Hello {name}</Name>
+                <Topic>Welcome to {topicName}</Topic>
+                <Image
+                  src="https://assets.ccbp.in/frontend/react-js/meetup/meetup-img.png"
+                  alt="meetup"
+                />
+              </HomeContainer>
+            ) : (
+              <HomeContainer>
+                <HomeHeading>Welcome to Meetup</HomeHeading>
+                <HomePara>Please register for the topic</HomePara>
+                <Link to="/register">
+                  <Button onClick={onRegister}>Register</Button>
+                </Link>
+
+                <Image
+                  src="https://assets.ccbp.in/frontend/react-js/meetup/meetup-img.png"
+                  alt="meetup"
+                />
+              </HomeContainer>
+            )}
+          </div>
         )
       }}
     </RegisterContext.Consumer>

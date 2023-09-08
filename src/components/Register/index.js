@@ -1,17 +1,16 @@
-import {useState} from 'react'
+import Header from '../Header'
 
 import RegisterContext from '../../context/RegisterContext'
 
-import Header from '../Header'
 import {
-  LoginContainer,
-  BannerImage,
-  LoginForm,
-  LoginHeading,
-  InputLabel,
+  RegisterContainer,
+  RegisterImg,
+  Form,
+  RegisterHeading,
+  InputContainer,
+  Label,
   Input,
   Select,
-  Option,
   RegisterButton,
   ErrorMsg,
 } from './styledComponents'
@@ -39,87 +38,83 @@ const topicsList = [
   },
 ]
 
-const Register = props => {
-  const [userName, setUserName] = useState('')
+const Register = props => (
+  <RegisterContext.Consumer>
+    {value => {
+      const {
+        name,
+        topic,
+        updateName,
+        updateTopic,
+        showError,
+        changeRegisterStatus,
+        updateError,
+      } = value
 
-  return (
-    <RegisterContext.Consumer>
-      {value => {
-        const {
-          // name,
-          topic,
-          changeRegisterStatus,
-          showError,
-          updateError,
-          updateName,
-          updateTopic,
-        } = value
+      const submitRegistration = event => {
+        event.preventDefault()
 
-        const onChangeTopic = event => {
-          updateTopic(event.target.value)
+        if (name !== '' && topic !== '') {
+          const {history} = props
+          history.replace('/')
+          changeRegisterStatus()
+        } else {
+          updateError()
         }
+      }
 
-        const onChangeName = event => {
-          // console.log(event.target.value)
-          // updateName(event.target.value)
-          setUserName(event.target.value)
-        }
+      const onChangeName = event => {
+        updateName(event.target.value)
+      }
 
-        const onClickRegister = event => {
-          event.preventDefault()
+      const onChangeTopic = event => {
+        updateTopic(event.target.value)
+      }
 
-          if (userName === '') {
-            updateError()
-          } else {
-            // console.log('register')
-            const {history} = props
-            changeRegisterStatus()
-            updateName(userName)
-            setUserName('')
-            history.replace('/')
-          }
-        }
-
-        return (
-          <>
-            <Header />
-            <LoginContainer>
-              <BannerImage
+      return (
+        <div>
+          <Header />
+          <div>
+            <RegisterContainer>
+              <RegisterImg
                 src="https://assets.ccbp.in/frontend/react-js/meetup/website-register-img.png"
                 alt="website register"
               />
-              <LoginForm onSubmit={onClickRegister}>
-                <LoginHeading>Let us join</LoginHeading>
-                <InputLabel htmlFor="nameInput">NAME</InputLabel>
-                <Input
-                  type="text"
-                  value={userName}
-                  placeholder="Your Name"
-                  id="nameInput"
-                  onChange={onChangeName}
-                />
-                <InputLabel htmlFor="selectInput">TOPICS</InputLabel>
-                <Select
-                  type="dropdown"
-                  id="selectInput"
-                  value={topic}
-                  onChange={onChangeTopic}
-                >
-                  {topicsList.map(eachTopic => (
-                    <Option key={eachTopic.id} value={eachTopic.id}>
-                      {eachTopic.displayText}
-                    </Option>
-                  ))}
-                </Select>
+              <Form onSubmit={submitRegistration}>
+                <RegisterHeading>Let us join</RegisterHeading>
+                <InputContainer>
+                  <Label htmlFor="name">NAME</Label>
+                  <Input
+                    id="name"
+                    value={name}
+                    type="text"
+                    onChange={onChangeName}
+                    placeholder="Your name"
+                  />
+                </InputContainer>
+                <InputContainer>
+                  <Label htmlFor="topic">Topics</Label>
+                  <Select id="topic" value={topic} onChange={onChangeTopic}>
+                    {topicsList.map(each => (
+                      <option value={each.id} key={each.id}>
+                        {each.displayText}
+                      </option>
+                    ))}
+                  </Select>
+                </InputContainer>
                 <RegisterButton type="submit">Register Now</RegisterButton>
-                {showError && <ErrorMsg>Please enter your name</ErrorMsg>}
-              </LoginForm>
-            </LoginContainer>
-          </>
-        )
-      }}
-    </RegisterContext.Consumer>
-  )
-}
+                {showError === true ? (
+                  <ErrorMsg>Please enter your name</ErrorMsg>
+                ) : (
+                  ''
+                )}
+              </Form>
+            </RegisterContainer>
+          </div>
+        </div>
+      )
+    }}
+  </RegisterContext.Consumer>
+)
 
 export default Register

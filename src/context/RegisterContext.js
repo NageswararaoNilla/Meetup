@@ -3,7 +3,7 @@ import React from 'react'
 const RegisterContext = React.createContext({
   registerStatus: false,
   name: '',
-  topic: 'Arts and Culture',
+  topic: 'ARTS_AND_CULTURE',
   showError: false,
   changeRegisterStatus: () => {},
   updateError: () => {},

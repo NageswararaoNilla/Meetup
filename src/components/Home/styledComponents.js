@@ -1,4 +1,3 @@
-import {Link} from 'react-router-dom'
 import styled from 'styled-components'
 
 export const HomeContainer = styled.div`
@@ -6,50 +5,50 @@ export const HomeContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  min-height: 80vh;
 `
 
-export const Greetings = styled.h1`
+export const HomeHeading = styled.h1`
+  color: #334155;
+  font-size: 52px;
   font-family: 'Roboto';
-  font-size: 40px;
-  margin-bottom: 5px;
-  margin-top: 5px;
 `
-
-export const Message = styled.p`
-  font-family: 'Roboto';
+export const HomePara = styled.p`
   color: #475569;
-  font-weight: 600;
-  margin-top: 5px;
-  font-size: 20px;
+  font-size: 22px;
+  font-family: 'Roboto';
 `
 
-export const LinkEl = styled(Link)``
-
-export const RegisterButton = styled.button`
+export const Button = styled.button`
   background-color: #3b82f6;
-  width: 100px;
-  padding: 8px;
-  border-style: none;
   color: #ffffff;
-  border-radius: 8px;
   font-family: 'Roboto';
-  cursor: pointer;
+  border: none;
+  outline: none;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 6px;
 `
 
-export const GreetingsTopic = styled.h1`
-  font-family: 'Roboto';
-  margin-top: 5px;
+export const Image = styled.img`
+  height: 350px;
+  width: 90%;
+  margin-top: 30px;
 `
 
 export const Name = styled.h1`
   color: #2563eb;
+  font-size: 45px;
   font-family: 'Roboto';
-  font-size: 32px;
-  //   margin-bottom: 5px;
 `
 
-export const MeetupImage = styled.img`
-  width: 550px;
-  height: 300px;
-  margin: 20px;
+export const Topic = styled.p`
+  color: #334155;
+  font-size: 25px;
+  font-family: 'Roboto';
+  font-weight: bold;
 `
+
+export default HomeContainer

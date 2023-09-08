@@ -1,66 +1,80 @@
 import styled from 'styled-components'
 
-export const LoginContainer = styled.div`
+export const RegisterContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
-  height: 70vh;
-  width: 100vw;
-  padding: 20px;
+  justify-content: center;
+  min-height: 80vh;
 `
-export const BannerImage = styled.img`
-  height: 100%;
-  width: 450px;
+
+export const RegisterImg = styled.img`
+  height: 400px;
+  width: 400px;
 `
-export const LoginForm = styled.form`
+
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  width: 250px;
+  align-items: flex-start;
 `
-export const LoginHeading = styled.h1`
+export const RegisterHeading = styled.h1`
   color: #334155;
-  font-size: 35px;
+  font-size: 32px;
   font-family: 'Roboto';
 `
-export const InputLabel = styled.label`
-  color: #64748b;
+
+export const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`
+
+export const Label = styled.label`
+  color: #7b8794;
   font-size: 14px;
   font-family: 'Roboto';
-  font-weight: 800;
-  margin-top: 5px;
-  margin-bottom: 2px;
+  font-weight: bold;
+  margin-bottom: 5px;
 `
+
 export const Input = styled.input`
-  padding: 10px;
-  width: 250px;
+  border: 1px solid #cbd5e1;
+  width: 350px;
+  padding: 15px;
+  color: #000000;
+  font-family: 'Roboto';
+  outline: none;
   margin-bottom: 8px;
-  outline: none;
 `
+
 export const Select = styled.select`
-  width: 250px;
-  padding: 10px;
+  border: 1px solid #cbd5e1;
+  width: 350px;
+  padding: 15px;
+  color: #000000;
+  font-family: 'Roboto';
   outline: none;
-  margin-bottom: 30px;
+  margin-bottom: 8px;
 `
-export const Option = styled.option``
 
 export const RegisterButton = styled.button`
   background-color: #3b82f6;
-  width: 120px;
-  padding: 10px;
-  border-style: none;
   color: #ffffff;
-  border-radius: 8px;
   font-family: 'Roboto';
-  cursor: pointer;
+  border: none;
+  outline: none;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 6px;
+  margin-top: 20px;
 `
-
 export const ErrorMsg = styled.p`
   color: #ff0b37;
-  font-size: 12px;
+  font-size: 16px;
   font-family: 'Roboto';
-  font-weight: 500;
-  margin-top: 5px;
 `
+
+export default RegisterContainer
